@@ -28,7 +28,7 @@ class DropSlot extends React.Component<Props, {}> {
         onDrop={ this.onDrop }
         allowDrop={ this.allowDrop }
       >
-        <span className="node-drop-slot"/>
+        <span className="node-drop-slot" style={ { zIndex: this.props.node.level + 10 } }/>
       </TreeDrop>
     );
   }

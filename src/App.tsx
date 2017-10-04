@@ -46,7 +46,6 @@ interface State {
 class App extends React.Component<{}, State> {
   options: ITreeOptions = {
     useVirtualScroll: true,
-    nodeHeight: 23,
     allowDrag: true,
     getChildren: (node: TreeNode) => {
       return new Promise((resolve) => {

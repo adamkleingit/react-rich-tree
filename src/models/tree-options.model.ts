@@ -127,7 +127,7 @@ export class TreeOptions {
       return 0;
     }
 
-    let nodeHeight = this.options.nodeHeight || 22;
+    let nodeHeight = this.options.nodeHeight || 25;
 
     if (typeof nodeHeight === 'function') {
       nodeHeight = nodeHeight(node);

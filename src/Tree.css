@@ -54,10 +54,15 @@
   height: 2px;
 }
 
-.is-dragging-over .node-drop-slot {
+.is-dragging-over .node-drop-slot, .is-dragging-over-disabled .node-drop-slot {
   background: #ddffee;
   height: 20px;
   border: 2px dotted #888;
+}
+
+.is-dragging-over-disabled .node-drop-slot {
+  opacity: 0.5;
+  cursor: no-drop;
 }
 
 /* tree-node-expander */
@@ -83,7 +88,7 @@
 }
 .toggle-children-placeholder {
   display: inline-block;
-  height: 10px;
+  height: 25px;
   width: 10px;
   position: relative;
   top: 1px;
