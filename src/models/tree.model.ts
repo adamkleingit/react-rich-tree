@@ -293,10 +293,11 @@ export class TreeModel implements ITreeModel {
   }
 
   performKeyAction(node, $event) {
-    const action = this.options.actionMapping.keys[$event.keyCode];
-    if (action) {
+    const mappedAction = this.options.actionMapping.keys[$event.keyCode];
+
+    if (mappedAction) {
       $event.preventDefault();
-      action(this, node, $event);
+      mappedAction(this, node, $event);
       return true;
     } else {
       return false;
@@ -313,11 +314,9 @@ export class TreeModel implements ITreeModel {
     // support function and string filter
     if (isString(filter)) {
       filterFn = (node) => node.displayField.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
-    }
-    else if (isFunction(filter)) {
+    } else if (isFunction(filter)) {
        filterFn = filter;
-    }
-    else {
+    } else {
       console.error('Don\'t know what to do with filter', filter);
       console.error('Should be either a string or function');
       return;
@@ -338,7 +337,9 @@ export class TreeModel implements ITreeModel {
     const fromIndex = node.getIndexInParent();
     const fromParent = node.parent;
 
-    if (!this._canMoveNode(node, fromIndex , to)) return;
+    if (!this.canMoveNode(node, to)) {
+      return;
+    }
 
     const fromChildren = fromParent.getField('children');
 
@@ -355,18 +356,29 @@ export class TreeModel implements ITreeModel {
 
     toChildren.splice(toIndex, 0, originalNode);
 
-    fromParent.treeModel.update();
-    if (to.parent.treeModel !== fromParent.treeModel) {
-      to.parent.treeModel.update();
-    }
+    setTimeout(() => {
+      fromParent.treeModel.update();
+      if (to.parent.treeModel !== fromParent.treeModel) {
+        to.parent.treeModel.update();
+      }  
+    });
 
-    this.fireEvent({ eventName: TREE_EVENTS.moveNode, node: originalNode, to: { parent: to.parent.data, index: toIndex } });
+    this.fireEvent({
+      eventName: TREE_EVENTS.moveNode,
+      node: originalNode,
+      to: {
+        parent: to.parent.data,
+        index: toIndex
+      }
+    });
   }
 
   @action copyNode(node: TreeNode, to) {
     const fromIndex = node.getIndexInParent();
 
-    if (!this._canMoveNode(node, fromIndex , to)) return;
+    if (!this.canMoveNode(node , to)) {
+      return;
+    }
 
     // If node doesn't have children - create children array
     if (!to.parent.getField('children')) {
@@ -414,7 +426,9 @@ export class TreeModel implements ITreeModel {
   }
 
   @action setState(state) {
-    if (!state) return;
+    if (!state) {
+      return;
+    }
 
     Object.assign(this, {
       expandedNodeIds: state.expandedNodeIds || {},
@@ -428,16 +442,16 @@ export class TreeModel implements ITreeModel {
     autorun(() => fn(this.getState()));
   }
 
-  // private methods
-  private _canMoveNode(node, fromIndex, to) {
+  canMoveNode(node, to) {    
+    const fromIndex = node.getIndexInParent();
     // same node:
     if (node.parent === to.parent && fromIndex === to.index) {
       return false;
     }
-
     return !to.parent.isDescendantOf(node);
   }
 
+  // private methods
   private _filterNode(ids, node, filterFn, autoShow) {
     // if node passes function then it's visible
     let isVisible = filterFn(node);
@@ -483,8 +497,7 @@ export class TreeModel implements ITreeModel {
 
     if (value) {
       this.activeNodeIds = {[node.id]: true};
-    }
-    else {
+    } else {
       this.activeNodeIds = {};
     }
   }
@@ -492,5 +505,4 @@ export class TreeModel implements ITreeModel {
   private _setActiveNodeMulti(node, value) {
     this.activeNodeIds = Object.assign({}, this.activeNodeIds, {[node.id]: value});
   }
-
 }

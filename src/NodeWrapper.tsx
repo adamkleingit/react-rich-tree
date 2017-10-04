@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { TreeNode } from './models/tree-node.model';
 import NodeContent from './NodeContent';
 import NodeExpander from './NodeExpander';
+import TreeDrag from './dragAndDrop/TreeDrag';
+import TreeDrop from './dragAndDrop/TreeDrop';
 
 interface Props {
   node: TreeNode;
@@ -42,14 +44,23 @@ class NodeWrapper extends React.Component<Props, {}> {
       : (
         <div className="node-wrapper">
           <NodeExpander node={ node }/>
-          <div
-            className={ this.getClassName() }
-            onClick={ this.handleClick }
-            onDoubleClick={ this.handleDblClick }
-            onContextMenu={ this.handleContextmenu }
+          <TreeDrop
+            onDrop={ node.onDrop }
+            onDragLeave={ (event) => node.mouseAction('dragLeave', event) }
+            onDragEnter={ (event) => node.mouseAction('dragEnter', event) }
+            allowDrop={ (element, event) => node.allowDrop(element, 0, event) }
           >
-            <NodeContent node={ node }/>
-          </div>
+            <TreeDrag enabled={ node.allowDrag() } node={ node }>
+              <div
+                className={ this.getClassName() }
+                onClick={ this.handleClick }
+                onDoubleClick={ this.handleDblClick }
+                onContextMenu={ this.handleContextmenu }
+              >
+                <NodeContent node={ node }/>
+              </div>
+            </TreeDrag>
+          </TreeDrop>
         </div>
       );
   }

@@ -8,10 +8,10 @@ import * as _ from 'lodash';
 const { first, last, compact } = _;
 
 export class TreeNode implements ITreeNode {
-  @computed get isHidden() { return this.treeModel.isHidden(this); };
-  @computed get isExpanded() { return this.treeModel.isExpanded(this); };
-  @computed get isActive() { return this.treeModel.isActive(this); };
-  @computed get isFocused() { return this.treeModel.isNodeFocused(this); };
+  @computed get isHidden() { return this.treeModel.isHidden(this); }
+  @computed get isExpanded() { return this.treeModel.isExpanded(this); }
+  @computed get isActive() { return this.treeModel.isActive(this); }
+  @computed get isFocused() { return this.treeModel.isNodeFocused(this); }
 
   @observable children: TreeNode[];
   @observable index: number;
@@ -40,7 +40,7 @@ export class TreeNode implements ITreeNode {
   }
 
   private _originalNode: any;
-  get originalNode() { return this._originalNode; };
+  get originalNode() { return this._originalNode; }
 
   constructor(public data: any, public parent: TreeNode, public treeModel: TreeModel, index: number) {
     if (this.id === undefined || this.id === null) {
@@ -153,8 +153,11 @@ export class TreeNode implements ITreeNode {
   }
 
   isDescendantOf(node: TreeNode) {
-    if (this === node) return true;
-    else return this.parent && this.parent.isDescendantOf(node);
+    if (this === node) {
+      return true;
+    } else {
+      return this.parent && this.parent.isDescendantOf(node);
+    }
   }
 
   getNodePadding(): string {
@@ -165,14 +168,23 @@ export class TreeNode implements ITreeNode {
     return [this.options.nodeClass(this), `tree-node-level-${ this.level }`].join(' ');
   }
 
-  onDrop($event) {
+  onDrop = ($event) => {
     this.mouseAction('drop', $event.event, {
       from: $event.element,
       to: { parent: this, index: 0, dropOnNode: true }
     });
   }
 
-  allowDrop = (element, $event?) => {
+  allowDrop = (element, index, $event?) => {
+    if (
+      (element instanceof TreeNode) &&
+      !this.treeModel.canMoveNode(element, {
+         parent: this,
+         index
+       })) {
+      return false;
+    }
+
     return this.options.allowDrop(element, { parent: this, index: 0 }, $event);
   }
 
@@ -258,7 +270,7 @@ export class TreeNode implements ITreeNode {
     }
 
     return Promise.resolve();
-  };
+  }
 
   setIsActive(value, multi = false) {
     this.treeModel.setActiveNode(this, value, multi);
@@ -328,10 +340,10 @@ export class TreeNode implements ITreeNode {
     this.treeModel.setFocus(true);
 
     const actionMapping = this.options.actionMapping.mouse;
-    const action = actionMapping[actionName];
+    const mappedAction = actionMapping[actionName];
 
-    if (action) {
-      action(this.treeModel, this, $event, data);
+    if (mappedAction) {
+      mappedAction(this.treeModel, this, $event, data);
     }
   }
 

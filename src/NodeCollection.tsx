@@ -59,7 +59,7 @@ class NodeCollection extends React.Component<Props, {}> {
       <div style={ { marginTop: this.marginTop } }>
         {
           this.viewportNodes.map((node, i) => (
-            <Node node={ node } key={ node.id } treeModel={ this.props.treeModel }/>
+            <Node node={ node } index={ i } key={ node.id } treeModel={ this.props.treeModel }/>
           ))
         }
       </div>

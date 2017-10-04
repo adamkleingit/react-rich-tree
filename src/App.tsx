@@ -47,19 +47,14 @@ class App extends React.Component<{}, State> {
   options: ITreeOptions = {
     useVirtualScroll: true,
     nodeHeight: 23,
-    dropSlotHeight: 0,
+    allowDrag: true,
     getChildren: (node: TreeNode) => {
       return new Promise((resolve) => {
         setTimeout(() => {
           const path = node.pathToNodeInData;
           const children = [{ name: 'async child' }];
           resolve(children);
-          
-          // const newNodes = set([...path, 'children'], children, this.state.nodes);
-          // this.setState({
-          //   nodes: newNodes
-          // });
-        }, 2000);
+        }, 1000);
       });
     }
     // TreeNodeWrapperComponent,
@@ -71,10 +66,10 @@ class App extends React.Component<{}, State> {
 
     const nodes = [];
 
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 3; i++) {
       const root = { name: `root${i}`, children: [] };
 
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < 3; j++) {
         root.children.push({ name: `node${i}.${j}`, hasChildren: true });
       }
       nodes.push(root);

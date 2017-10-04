@@ -5,10 +5,12 @@ import { TreeNode } from './models/tree-node.model';
 import { TreeModel } from './models/tree.model';
 import NodeWrapper from './NodeWrapper';
 import NodeChildren from './NodeChildren';
+import DropSlot from './dragAndDrop/DropSlot';
 
 interface Props {
   node: TreeNode;
   treeModel: TreeModel;
+  index: number;
 }
 
 @observer
@@ -30,14 +32,16 @@ class Node extends React.Component<Props, {}> {
   }
 
   render() {
-    const { node, treeModel } = this.props;
+    const { node, treeModel, index } = this.props;
 
     return node.options.TreeNodeFullComponent
       ? <node.options.TreeNodeFullComponent node={ node } treeModel={ treeModel }/>
       : (
         <div className={ this.getClassName() }>
+          { index === 0 ? <DropSlot dropIndex={ node.index } node={ node.parent }/> : null }
           <NodeWrapper node={ node }/>
           <NodeChildren treeModel={ treeModel } node={ node }/>
+          <DropSlot dropIndex={ node.index + 1 } node={ node.parent }/>
         </div>
       );
   }
