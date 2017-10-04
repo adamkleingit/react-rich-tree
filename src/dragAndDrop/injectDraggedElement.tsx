@@ -1,21 +1,9 @@
 import * as React from 'react';
 import { object } from 'prop-types';
-import { observable, action } from 'mobx';
 import { observer } from 'mobx-react';
+import { TreeDraggedElement } from '../models/tree-dragged-element';
 
-class DraggedElementProvider {
-  @observable private element: any;
-
-  @action setElement(element: any) {
-    this.element = element;
-  }
-
-  getElement() {
-    return this.element;
-  }
-}
-
-export const draggedElementProvider = new DraggedElementProvider();
+export const draggedElementProvider = new TreeDraggedElement();
 
 export function injectDraggedElement(WrappedComponent) {
   @observer
@@ -27,8 +15,8 @@ export function injectDraggedElement(WrappedComponent) {
     render() {
       return (
         <WrappedComponent
-          draggedElement={ draggedElementProvider.getElement() }
-          setDraggedElement={ (element) => draggedElementProvider.setElement(element) }
+          draggedElement={ draggedElementProvider.get() }
+          setDraggedElement={ (element) => draggedElementProvider.set(element) }
           { ...this.props }
         />
       );
