@@ -1,17 +1,38 @@
 {
-  "name": "react-tree",
+  "name": "react-rich-tree",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@shopify/draggable": "1.0.0-beta",
-    "lodash": ">=4.17.4",
-    "mobx": ">=3.2.2",
-    "mobx-react": ">=4.2.2"
-  },
+  "description": "A simple yet powerful tree component for Angular2",
+  "author": "Adam Klein <adam@500tech.com>",
+  "homepage": "https://github.com/500tech/react-rich-tree",
+  "license": "MIT",
   "main": "dist/react-tree.umd.js",
   "jsnext:main": "dist/react-tree.js",
   "module": "dist/react-tree.js",
   "types": "dist/react-tree.d.ts",
+  "keywords": [
+    "ng",
+    "angular",
+    "ng2",
+    "angular2",
+    "tree",
+    "treeview",
+    "tree-view",
+    "angular2-tree",
+    "angular-tree",
+    "angular tree",
+    "angular2 tree",
+    "ng2-tree",
+    "ng2tree",
+    "ng2 tree",
+    "ngtree",
+    "ng-tree",
+    "angular-treeview",
+    "angular2-treeview",
+    "angular-tree-component",
+    "angular tree component",
+    "angular2-tree-component",
+    "angular2 tree component"
+  ],
   "scripts": {
     "setup": "cd example && npm i && npm i ../",
     "start:example": "cd example && npm i ../ && npm start",
@@ -23,55 +44,11 @@
     "build": "npm run lint && npm run clean && npm run tsc && npm run rollup && npm run cp:assets",
     "test": "node scripts/test.js --env=jsdom"
   },
-  "jest": {
-    "mapCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "moduleFileExtensions": [
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "web.js",
-      "js",
-      "web.jsx",
-      "jsx",
-      "json"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
-      "^(?!.*\\.(css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "/Users/adamklein/projects/react-tree/tsconfig.test.json"
-      }
-    }
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "@shopify/draggable": "1.0.0-beta",
+    "lodash": ">=4.17.4",
+    "mobx": ">=3.2.2",
+    "mobx-react": ">=4.2.2"
   },
   "peerDependencies": {
     "react": ">=15"
@@ -125,5 +102,13 @@
     "webpack-dev-server": "2.5.0",
     "webpack-manifest-plugin": "1.1.0",
     "whatwg-fetch": "2.0.3"
+  },
+  "repository": "https://github.com/500tech/react-rich-tree.git",
+  "bugs": {
+    "url": "https://github.com/500tech/react-rich-tree/issues"
+  },
+  "engines": {
+    "node": ">= 4.2.1",
+    "npm": ">= 3"
   }
 }

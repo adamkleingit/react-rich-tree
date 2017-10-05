@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
-import '../node_modules/react-tree/dist/Tree.css';
-import { Tree } from 'react-tree';
+import '../node_modules/react-rich-tree/dist/Tree.css';
+import { Tree } from 'react-rich-tree';
 
 const LoadingComponent = () => <div>looooooading</div>;
 // class TreeNodeWrapperComponent extends NodeWrapper {
