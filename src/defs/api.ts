@@ -228,10 +228,36 @@ export interface ITreeOptions {
   getNodeClone?: (node: ITreeNode) => any;
 
   // React custom components
-  LoadingComponent?: any,
+  /**
+   * Custom Component to display node's content.
+   * The component will receive node:TreeNode as a prop
+   * If it is not supplied the tree will show the displayField which is 'name' by default
+   */
   TreeNodeComponent?: any,
+  /**
+   * Custom Component to display the node wrapper.
+   * The component will receive node:TreeNode as a prop
+   * By default, the wrapper displays the expander and the content, plus the drag and drop capability.
+   * If you need to put the expander in a different position, or put custom event listeners on the entire node,
+   * this is the place to do it.
+   * The best way to start is to look at NodeWrapper component code, or even extend it
+   */
   TreeNodeWrapperComponent?: any,
-  TreeNodeFullComponent?: any
+  /**
+   * Custom Component to display the node and its children.
+   * The component will receive node:TreeNode and tree:TreeModel as a prop
+   * By default, the node displays the node wrapper, surrounded by drop slots, and the node children.
+   * It also puts all key and mouse event listeners on the node.
+   * This is the place to go wild - you can completely override the tree behaviour using this custom component.
+   * The best way to start is to look at Node component code, or even extend it
+   */
+  TreeNodeFullComponent?: any,
+  /**
+   * Custom Component to display when children are being loaded asynchronously
+   * The component will receive node:TreeNode as a prop
+   * If it is not supplied the tree will display a short text indication
+   */
+  LoadingComponent?: any
 }
 
 export interface ITreeNode {

@@ -1,7 +1,7 @@
 {
   "name": "react-rich-tree",
   "version": "0.1.0",
-  "description": "A simple yet powerful tree component for Angular2",
+  "description": "A feature-rich, extensible tree component for React",
   "author": "Adam Klein <adam@500tech.com>",
   "homepage": "https://github.com/500tech/react-rich-tree",
   "license": "MIT",
