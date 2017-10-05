@@ -150,6 +150,7 @@ Some things on our mind down the road:
 ## Contributing
 Run once:
 `npm run setup`
+
 Run after changing code:
 `npm run build`
 `npm run start:example`
