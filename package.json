@@ -15,11 +15,11 @@
   "scripts": {
     "setup": "cd example && npm i && npm i ../",
     "start:example": "cd example && npm i ../ && npm start",
-    "lint": "node_modules/.bin/lint src/**",
+    "lint": "node_modules/.bin/tslint src/**",
     "clean": "rimraf dist",
     "tsc": "node_modules/.bin/tsc",
     "rollup": "./node_modules/.bin/rollup -c rollup.config.js dist/react-tree.js -o dist/react-tree.umd.js",
-    "cp:assets": "cp src/Tree.css dist",
+    "cp:assets": "cp assets/Tree.css dist",
     "build": "npm run lint && npm run clean && npm run tsc && npm run rollup && npm run cp:assets",
     "test": "node scripts/test.js --env=jsdom"
   },
