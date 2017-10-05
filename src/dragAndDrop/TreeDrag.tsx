@@ -3,7 +3,7 @@ import { Draggable } from '@shopify/draggable';
 import { TreeNode } from '../models/tree-node.model';
 import { injectDraggedElement } from './injectDraggedElement';
 
-interface Props {
+export interface Props {
   enabled: boolean;
   node: TreeNode;
   setDraggedElement: any;
@@ -56,28 +56,6 @@ class TreeDrag extends React.Component<Props, {}> {
       </span>
     );
   }
-
-  // @HostListener('dragstart', ['$event']) onDragStart(ev) {
-  //   // setting the data is required by firefox
-  //   ev.dataTransfer.setData('text', ev.target.id);
-  //   this.treeDraggedElement.set(this.draggedElement);
-  //   if (this.draggedElement.mouseAction) {
-  //       this.draggedElement.mouseAction('dragStart', ev);
-  //   }
-  // }
-
-  // @HostListener('drag', ['$event']) onDrag(ev) {
-  //   if (this.draggedElement.mouseAction) {
-  //       this.draggedElement.mouseAction('drag', ev);
-  //   }
-  // }
-
-  // @HostListener('dragend') onDragEnd() {
-  //   if (this.draggedElement.mouseAction) {
-  //     this.draggedElement.mouseAction('dragEnd');
-  //   }
-  //   this.treeDraggedElement.set(null);
-  // }
 }
 
 export default injectDraggedElement(TreeDrag);

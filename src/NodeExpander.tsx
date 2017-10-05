@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { TreeNode } from './models/tree-node.model';
 
-interface Props {
+export interface Props {
   node: TreeNode;
 }
 

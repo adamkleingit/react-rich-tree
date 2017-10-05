@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { TreeNode } from '../models/tree-node.model';
 import TreeDrop from './TreeDrop';
 
-interface Props {
+export interface Props {
   node: TreeNode;
   dropIndex: number;
 }

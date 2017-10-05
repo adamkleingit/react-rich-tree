@@ -7,7 +7,7 @@ import NodeExpander from './NodeExpander';
 import TreeDrag from './dragAndDrop/TreeDrag';
 import TreeDrop from './dragAndDrop/TreeDrop';
 
-interface Props {
+export interface Props {
   node: TreeNode;
 }
 

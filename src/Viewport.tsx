@@ -4,7 +4,7 @@ import { TREE_EVENTS } from './constants/events';
 import { TreeVirtualScroll } from './models/tree-virtual-scroll.model';
 import { TreeModel } from './models/tree.model';
 
-interface Props {
+export interface Props {
   treeModel: TreeModel;
 }
 

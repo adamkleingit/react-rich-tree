@@ -5,7 +5,7 @@ import { TreeModel } from './models/tree.model';
 import NodeCollection from './NodeCollection';
 import LoadingComponent from './LoadingComponent';
 
-interface Props {
+export interface Props {
   node: TreeNode;
   treeModel: TreeModel;
 }

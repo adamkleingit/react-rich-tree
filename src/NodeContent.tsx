@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TreeNode } from './models/tree-node.model';
 import { observer } from 'mobx-react';
 
-interface Props {
+export interface Props {
   node: TreeNode;
 }
 

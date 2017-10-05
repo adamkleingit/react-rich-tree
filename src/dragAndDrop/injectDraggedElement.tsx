@@ -5,7 +5,7 @@ import { TreeDraggedElement } from '../models/tree-dragged-element';
 
 export const draggedElementProvider = new TreeDraggedElement();
 
-export function injectDraggedElement(WrappedComponent) {
+export function injectDraggedElement(WrappedComponent): any {
   @observer
   class HOC extends React.Component<any, any> {
     static contextTypes = {

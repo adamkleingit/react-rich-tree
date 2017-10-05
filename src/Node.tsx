@@ -7,7 +7,7 @@ import NodeWrapper from './NodeWrapper';
 import NodeChildren from './NodeChildren';
 import DropSlot from './dragAndDrop/DropSlot';
 
-interface Props {
+export interface Props {
   node: TreeNode;
   treeModel: TreeModel;
   index: number;

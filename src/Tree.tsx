@@ -7,7 +7,7 @@ import Viewport from './Viewport';
 import { ITreeOptions } from './defs/api';
 import { events, EventEmitter } from './reactBridge';
 
-interface Props {
+export interface Props {
   nodes: object[];
   options: ITreeOptions;
   onToggleExpanded?: any;

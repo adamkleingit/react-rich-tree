@@ -6,7 +6,7 @@ import { TreeNode } from './models/tree-node.model';
 import { TreeModel } from './models/tree.model';
 import Node from './Node';
 
-interface Props {
+export interface Props {
   nodes: TreeNode[];
   treeModel: TreeModel;
 }
