@@ -9,6 +9,12 @@ module.exports = (baseConfig, env) => {
     loader: require.resolve('awesome-typescript-loader')
   });
   config.resolve.extensions.push('.ts', '.tsx');
-  
+
+  // for readme:
+  config.module.rules.push({
+    test: /\.md$/,
+    use: "raw-loader"
+  });
+
   return config;
 };

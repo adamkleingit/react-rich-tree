@@ -50,7 +50,7 @@ onEvent = (event) => console.log(event)
 
 ## Full example
 ```
-import { Tree, TreeNode, TreeModel, TREE_ACTIONS } from 'react-rich-tree';
+import { Tree, TreeNode, TreeModel, KEYS, TREE_ACTIONS } from 'react-rich-tree';
 
 nodes = [{
   id: 1,
@@ -106,7 +106,7 @@ options = {
   animateAcceleration: 1.1,
   scrollOnSelect: true,
   getNodeClone: (node: TreeNode) => ({ ...node.data, id: uuid.v4() }), // for dragging with ctrl pressed
-  TreeNodeComponent: ({ node }) => <span>{ node.data.name } ({node.children.length})</span>
+  TreeNodeComponent: ({ node }) => <span>{ node.data.name } ({node.children.length})</span>,
   TreeNodeWrapperComponent: MyCustomNodeWrapper, // a component class that extends NodeWrapper component (or replaces it)
   TreeNodeFullComponent: MyCustomFullNode, // a component class that extends Node component (or replaces it)
   LoadingComponent: ({ node }) => <img src="loading.gif"/>

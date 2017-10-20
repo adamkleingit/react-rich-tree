@@ -1,0 +1,6 @@
+td:nth-child(5) {
+  min-width: 300px;
+}
+td:nth-child(3) {
+  min-width: 400px;
+}

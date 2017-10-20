@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+.idea
+npm-debug.log
+/coverage
+/components
+/constants.js
+/readme-manager.js
+/register.js
+/with-readme.js
+/with-docs.js
+/index.js
