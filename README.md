@@ -1,5 +1,8 @@
 # React Rich Tree
 
+## Not maintained
+This project is not currently maintained. Feel free to fork it and use it for your needs.
+
 ## A full featured tree component for React
 We've built so many projects that required a tree component, and could never find a library that supported all features.
 And building your own tree component is not an easy task.
